@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 <label for="cpf" class="block font-medium text-sm text-gray-700">CPF</label>
-                                <input type="text" name="cpf" id="cpf" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('cpf') }}" required>
+                                <input x-init="IMask($el, cpfMaskOptions)" type="text" name="cpf" id="cpf" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('cpf') }}" required>
                             </div>
                             <div>
                                 <label for="birth_date" class="block font-medium text-sm text-gray-700">Data de Nascimento</label>
@@ -38,7 +38,7 @@
                             </div>
                             <div>
                                 <label for="phone" class="block font-medium text-sm text-gray-700">Telefone</label>
-                                <input type="tel" name="phone" id="phone" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('phone') }}" required>
+                                <input x-init="IMask($el, phoneMaskOptions)" type="tel" name="phone" id="phone" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('phone') }}" required>
                             </div>
                             <div class="md:col-span-2">
                                 <label for="gender" class="block font-medium text-sm text-gray-700">Gênero</label>

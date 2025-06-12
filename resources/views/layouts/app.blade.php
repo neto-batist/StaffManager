@@ -32,5 +32,18 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script>
+            const phoneMaskOptions = {
+                mask: '+55 (00) 0.0000-0000',
+                lazy: true 
+            };
+        </script>
+        <script>
+            const cpfMaskOptions = {
+                mask: '000.000.000-00',
+                lazy: true 
+            };
+        </script>
     </body>
 </html>
