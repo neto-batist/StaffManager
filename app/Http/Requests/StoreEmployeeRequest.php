@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\CpfValidationRule;
 
 class StoreEmployeeRequest extends FormRequest
 {
@@ -43,19 +44,26 @@ class StoreEmployeeRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array {
-        
+
         $cpfRule = 'unique:employees,cpf';
-        if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
+        if ($this->isMethod('put') || $this->isMethod('patch')) {
             $employeeId = $this->route('employee')->id;
             $cpfRule .= ',' . $employeeId;
         }
 
         return [
             'name' => 'required|string|max:255',
-            'cpf' => "required|string|digits:11|{$cpfRule}", // O CPF deve ser único e validado.
-            'birth_date' => 'required|date', 
-            'phone' => 'required|string|regex:/^[0-9]+$/|min:10|max:13',
-            'gender' => 'required|string', 
+
+            'cpf' => [
+                'required',
+                'string',
+                new CpfValidationRule,
+                $cpfRule
+            ],
+
+            'birth_date' => 'required|date',
+            'phone' => 'required|string|regex:/^[0-9]+$/|min:10|max:11', // Veja a observação abaixo
+            'gender' => 'required|string',
         ];
     }
 }
